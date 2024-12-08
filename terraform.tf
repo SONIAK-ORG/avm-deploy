@@ -38,5 +38,5 @@ provider "alz" {
 
 provider "azapi" {
   tenant_id   = var.tenant_id
-  use_msi = false
+  use_msi = true
 }
