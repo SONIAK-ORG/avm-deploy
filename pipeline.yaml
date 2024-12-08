@@ -6,7 +6,7 @@ variables:
   TF_LIB_DIR: './lib'  # Terraform files are also in the 'lib' directory
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Default'
 
 steps:
 # Step 1: Install Terraform (latest version managed by Terraform task)
