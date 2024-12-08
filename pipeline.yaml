@@ -3,6 +3,7 @@ trigger:
 
 variables:
   TF_WORKING_DIR: './' # Terraform files are in the root of the repository
+  TF_LIB_DIR: './lib'  # Terraform files are also in the 'lib' directory
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -24,34 +25,66 @@ steps:
       az account show
   displayName: Azure Login
 
-# Step 3: Terraform Init Without Backend Configuration
+# Step 3: Terraform Init in Root Directory (Local State)
 - script: |
     terraform init
   workingDirectory: $(TF_WORKING_DIR)
-  displayName: Terraform Init (Local State)
+  displayName: Terraform Init (Root Directory)
 
-# Step 4: Terraform Validate
+# Step 4: Terraform Init in `lib` Directory (Local State)
+- script: |
+    terraform init
+  workingDirectory: $(TF_LIB_DIR)
+  displayName: Terraform Init (Lib Directory)
+
+# Step 5: Terraform Validate in Root Directory
 - task: TerraformTaskV4@4
   inputs:
     command: 'validate'
     workingDirectory: $(TF_WORKING_DIR)
     environmentServiceNameAzureRM: 'Tenant'
-  displayName: Terraform Validate
+  displayName: Terraform Validate (Root Directory)
 
-# Step 5: Terraform Plan
+# Step 6: Terraform Plan in Root Directory
 - task: TerraformTaskV4@4
   inputs:
     command: 'plan'
     workingDirectory: $(TF_WORKING_DIR)
     commandOptions: '-out=tfplan'
     environmentServiceNameAzureRM: 'Tenant'
-  displayName: Terraform Plan
+  displayName: Terraform Plan (Root Directory)
 
-# Step 6: Terraform Apply
+# Step 7: Terraform Apply in Root Directory
 - task: TerraformTaskV4@4
   inputs:
     command: 'apply'
     workingDirectory: $(TF_WORKING_DIR)
     commandOptions: '-auto-approve tfplan'
     environmentServiceNameAzureRM: 'Tenant'
-  displayName: Terraform Apply
+  displayName: Terraform Apply (Root Directory)
+
+# Optional: Terraform Validate, Plan, and Apply in Lib Directory
+# Uncomment if required for operations in `lib` directory
+# - task: TerraformTaskV4@4
+#   inputs:
+#     command: 'validate'
+#     workingDirectory: $(TF_LIB_DIR)
+#     environmentServiceNameAzureRM: 'Tenant'
+#   displayName: Terraform Validate (Lib Directory)
+
+# - task: TerraformTaskV4@4
+#   inputs:
+#     command: 'plan'
+#     workingDirectory: $(TF_LIB_DIR)
+#     commandOptions: '-out=tfplan'
+#     environmentServiceNameAzureRM: 'Tenant'
+#   displayName: Terraform Plan (Lib Directory)
+
+# - task: TerraformTaskV4@4
+#   inputs:
+#     command: 'apply'
+#     workingDirectory: $(TF_LIB_DIR)
+#     commandOptions: '-auto-approve tfplan'
+#     environmentServiceNameAzureRM: 'Tenant'
+#   displayName: Terraform Apply (Lib Directory)
+
