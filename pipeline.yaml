@@ -1,0 +1,57 @@
+trigger:
+- main # Triggers on changes to the `main` branch
+
+variables:
+  TF_WORKING_DIR: './' # Terraform files are in the root of the repository
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# Step 1: Install Terraform (latest version managed by Terraform task)
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+  displayName: Install Terraform
+
+# Step 2: Azure Login using Service Connection
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Tenant' # Use the "Tenant" service connection
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az account show
+  displayName: Azure Login
+
+# Step 3: Terraform Init Without Backend Configuration
+- script: |
+    terraform init
+  workingDirectory: $(TF_WORKING_DIR)
+  displayName: Terraform Init (Local State)
+
+# Step 4: Terraform Validate
+- task: TerraformTaskV4@4
+  inputs:
+    command: 'validate'
+    workingDirectory: $(TF_WORKING_DIR)
+    environmentServiceNameAzureRM: 'Tenant'
+  displayName: Terraform Validate
+
+# Step 5: Terraform Plan
+- task: TerraformTaskV4@4
+  inputs:
+    command: 'plan'
+    workingDirectory: $(TF_WORKING_DIR)
+    commandOptions: '-out=tfplan'
+    environmentServiceNameAzureRM: 'Tenant'
+  displayName: Terraform Plan
+
+# Step 6: Terraform Apply
+- task: TerraformTaskV4@4
+  inputs:
+    command: 'apply'
+    workingDirectory: $(TF_WORKING_DIR)
+    commandOptions: '-auto-approve tfplan'
+    environmentServiceNameAzureRM: 'Tenant'
+  displayName: Terraform Apply
