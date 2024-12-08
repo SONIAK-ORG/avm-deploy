@@ -1,105 +1,105 @@
 {
   "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
-  "name": "devops",
+  "name": "custom",
   "management_groups": [
     {
       "archetypes": [
         "root"
       ],
-      "display_name": "devops-root",
+      "display_name": "custom-root",
       "exists": false,
-      "id": "devops-root",
+      "id": "custom-root",
       "parent_id": null
     },
     {
       "archetypes": [
         "platform"
       ],
-      "display_name": "devops-Platform",
+      "display_name": "custom-Platform",
       "exists": false,
-      "id": "devops-platform",
-      "parent_id": "devops-root"
+      "id": "custom-platform",
+      "parent_id": "custom-root"
     },
     {
       "archetypes": [
         "landing_zones"
       ],
-      "display_name": "devops-Landing zones",
+      "display_name": "custom-Landing zones",
       "exists": false,
-      "id": "devops-landingzones",
-      "parent_id": "devops-root"
+      "id": "custom-landingzones",
+      "parent_id": "custom-root"
     },
     {
       "archetypes": [
         "corp"
       ],
-      "display_name": "devops-Corp",
+      "display_name": "custom-Corp",
       "exists": false,
-      "id": "devops-corp",
-      "parent_id": "devops-landingzones"
+      "id": "custom-corp",
+      "parent_id": "custom-landingzones"
     },
     {
       "archetypes": [
         "online"
       ],
-      "display_name": "devops-Online",
+      "display_name": "custom-Online",
       "exists": false,
-      "id": "devops-online",
-      "parent_id": "devops-landingzones"
+      "id": "custom-online",
+      "parent_id": "custom-landingzones"
     },
     {
       "archetypes": [
         "sandboxes"
       ],
-      "display_name": "devops-Sandboxes",
+      "display_name": "custom-Sandboxes",
       "exists": false,
-      "id": "devops-sandboxes",
-      "parent_id": "devops-root"
+      "id": "custom-sandboxes",
+      "parent_id": "custom-root"
     },
     {
       "archetypes": [
         "management"
       ],
-      "display_name": "devops-Management",
+      "display_name": "custom-Management",
       "exists": false,
-      "id": "devops-management",
-      "parent_id": "devops-platform"
+      "id": "custom-management",
+      "parent_id": "custom-platform"
     },
     {
       "archetypes": [
         "connectivity"
       ],
-      "display_name": "devops-Connectivity",
+      "display_name": "custom-Connectivity",
       "exists": false,
-      "id": "devops-connectivity",
-      "parent_id": "devops-platform"
+      "id": "custom-connectivity",
+      "parent_id": "custom-platform"
     },
     {
       "archetypes": [
         "identity"
       ],
-      "display_name": "devops-Identity",
+      "display_name": "custom-Identity",
       "exists": false,
-      "id": "devops-identity",
-      "parent_id": "devops-platform"
+      "id": "custom-identity",
+      "parent_id": "custom-platform"
     },
     {
       "archetypes": [
         "security"
       ],
-      "display_name": "devops-Security",
+      "display_name": "custom-Security",
       "exists": false,
-      "id": "devops-security",
-      "parent_id": "devops-platform"
+      "id": "custom-security",
+      "parent_id": "custom-platform"
     },
     {
       "archetypes": [
         "decommissioned"
       ],
-      "display_name": "devops-Decommissioned",
+      "display_name": "custom-Decommissioned",
       "exists": false,
-      "id": "devops-decommissioned",
-      "parent_id": "devops-root"
+      "id": "custom-decommissioned",
+      "parent_id": "custom-root"
     }
   ]
 }
