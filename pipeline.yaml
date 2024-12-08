@@ -25,17 +25,21 @@ steps:
       az account show
   displayName: Azure Login
 
-# Step 3: Terraform Init in Root Directory (Local State)
+# Step 3: Terraform Init in Root Directory with Debug Logging
 - script: |
+    export TF_LOG=DEBUG
+    export TF_LOG_PATH=$(System.DefaultWorkingDirectory)/terraform-root.log
     terraform init
   workingDirectory: $(TF_WORKING_DIR)
-  displayName: Terraform Init (Root Directory)
+  displayName: Terraform Init (Root Directory with Debug Logging)
 
-# Step 4: Terraform Init in `lib` Directory (Local State)
+# Step 4: Terraform Init in `lib` Directory with Debug Logging
 - script: |
+    export TF_LOG=DEBUG
+    export TF_LOG_PATH=$(System.DefaultWorkingDirectory)/terraform-lib.log
     terraform init
   workingDirectory: $(TF_LIB_DIR)
-  displayName: Terraform Init (Lib Directory)
+  displayName: Terraform Init (Lib Directory with Debug Logging)
 
 # Step 5: Terraform Validate in Root Directory
 - task: TerraformTaskV4@4
@@ -45,14 +49,13 @@ steps:
     environmentServiceNameAzureRM: 'Tenant'
   displayName: Terraform Validate (Root Directory)
 
-# Step 6: Terraform Plan in Root Directory
-- task: TerraformTaskV4@4
-  inputs:
-    command: 'plan'
-    workingDirectory: $(TF_WORKING_DIR)
-    commandOptions: '-out=tfplan'
-    environmentServiceNameAzureRM: 'Tenant'
-  displayName: Terraform Plan (Root Directory)
+# Step 6: Terraform Plan in Root Directory with Debug Logging
+- script: |
+    export TF_LOG=DEBUG
+    export TF_LOG_PATH=$(System.DefaultWorkingDirectory)/terraform-plan.log
+    terraform plan -out=tfplan
+  workingDirectory: $(TF_WORKING_DIR)
+  displayName: Terraform Plan (Root Directory with Debug Logging)
 
 # Step 7: Terraform Apply in Root Directory
 - task: TerraformTaskV4@4
@@ -63,28 +66,11 @@ steps:
     environmentServiceNameAzureRM: 'Tenant'
   displayName: Terraform Apply (Root Directory)
 
-# Optional: Terraform Validate, Plan, and Apply in Lib Directory
-# Uncomment if required for operations in `lib` directory
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'validate'
-#     workingDirectory: $(TF_LIB_DIR)
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Validate (Lib Directory)
-
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'plan'
-#     workingDirectory: $(TF_LIB_DIR)
-#     commandOptions: '-out=tfplan'
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Plan (Lib Directory)
-
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'apply'
-#     workingDirectory: $(TF_LIB_DIR)
-#     commandOptions: '-auto-approve tfplan'
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Apply (Lib Directory)
+# Step 8: Publish Terraform Logs as Artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: $(System.DefaultWorkingDirectory)/*.log
+    artifactName: terraform-logs
+    publishLocation: 'Container'
+  displayName: Publish Terraform Logs
 
