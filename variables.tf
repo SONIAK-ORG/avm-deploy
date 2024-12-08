@@ -15,5 +15,5 @@ variable "location" {
 
 variable "architecture_name" {
   type = string
-  default = "custom"
+  default = "devops"
 }
