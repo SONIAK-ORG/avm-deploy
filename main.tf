@@ -1,5 +1,5 @@
-// # This allows us to get the tenant id
-// data "azapi_client_config" "current" {}
+# This allows us to get the tenant id
+data "azapi_client_config" "current" {}
 
 // module "alz_architecture" {
 //   source             = "Azure/avm-ptn-alz/azurerm"
