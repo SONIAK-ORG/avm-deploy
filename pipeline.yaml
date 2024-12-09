@@ -16,10 +16,10 @@ steps:
 
 # Step 2: Azure Login using Service Principal
 - script: |
-    export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
-    export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
-    export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
-    export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+    export ARM_CLIENT_ID="975d02cd-5386-4c2a-a939-7516c5c8c044"
+    export ARM_CLIENT_SECRET="dWG8Q~iD3RKGTs13iCSFYjH1HqmG.ANKucH25dr4"
+    export ARM_SUBSCRIPTION_ID="6ab5ad42-6a7d-4f21-a926-9ce61b67df96"
+    export ARM_TENANT_ID="832b0908-3585-4294-a01c-7763fc195006"
     az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
     az account set --subscription $ARM_SUBSCRIPTION_ID
   displayName: Azure Login Using Service Principal
@@ -49,4 +49,5 @@ steps:
   env:
     TF_LOG: DEBUG
   displayName: Terraform Apply (Debug)
+
 
