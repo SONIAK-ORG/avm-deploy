@@ -38,7 +38,6 @@ provider "alz" {
 
 provider "azapi" {
   use_msi       = true
-  msi_client_id = "6688bcff-1f80-472a-96db-d7f0cae4e0c0" # Object ID or Client ID of the Managed Identity
   subscription_id = var.subscription_id
   tenant_id       = var.tenant_id
 }
