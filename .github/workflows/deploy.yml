@@ -1,0 +1,61 @@
+name: Terraform Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  ARM_CLIENT_ID: 975d02cd-5386-4c2a-a939-7516c5c8c044
+  ARM_CLIENT_SECRET: dWG8Q~iD3RKGTs13iCSFYjH1HqmG.ANKucH25dr4
+  ARM_SUBSCRIPTION_ID: 6ab5ad42-6a7d-4f21-a926-9ce61b67df96
+  ARM_TENANT_ID: 832b0908-3585-4294-a01c-7763fc195006
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install Terraform
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: latest
+
+      # Step 3: Azure Login using Service Principal
+      - name: Azure Login Using Service Principal
+        run: |
+          az login --service-principal \
+            --username $ARM_CLIENT_ID \
+            --password $ARM_CLIENT_SECRET \
+            --tenant $ARM_TENANT_ID
+          az account set --subscription $ARM_SUBSCRIPTION_ID
+
+      # Step 4: Terraform Init Without Backend Configuration
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./
+
+      # Step 5: Terraform Validate
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./
+
+      # Step 6: Terraform Plan
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ./
+
+      # Step 7: Terraform Apply (with Debugging)
+      - name: Terraform Apply (Debug)
+        run: terraform apply -auto-approve tfplan
+        working-directory: ./
+        env:
+          TF_LOG: DEBUG
