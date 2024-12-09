@@ -107,21 +107,13 @@ module "alz_architecture" {
   parent_resource_id = data.azapi_client_config.current.tenant_id
   location           = var.location
 
-  # Timeouts Configuration
-  timeouts = {
-    management_group = {
-      create = "15m" # Allow additional time for management group creation
-      update = "10m"
-      delete = "10m"
-      read   = "5m"
-    }
-    policy_assignment = {
-      create = "20m" # Allow time for policy definitions to propagate
-      delete = "10m"
-      update = "10m"
-      read   = "5m"
-    }
-  }
+   delays = {
+     after_management_group = {
+       create  = "60s"
+       destroy = "0s"
+     }
+
+   }
 
   # Retries Configuration
   retries = {
@@ -136,15 +128,7 @@ module "alz_architecture" {
       multiplier           = 2     # Exponential backoff multiplier
       randomization_factor = 0.5   # Add randomness to retry intervals
     }
-    policy_assignments = {
-      error_message_regex = [
-        "The policy definition specified in policy assignment '.+' is out of scope" # Handle policy propagation delays
-      ]
-      interval_seconds     = 5
-      max_interval_seconds = 30
-      multiplier           = 2
-      randomization_factor = 0.5
-    }
+
   }
 }
 
