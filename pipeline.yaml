@@ -1,93 +1,3 @@
-# trigger:
-# - main # Triggers on changes to the `main` branch
-
-# variables:
-#   TF_WORKING_DIR: './' # Terraform files are in the root of the repository
-#   TF_LIB_DIR: './lib'  # Terraform files are also in the 'lib' directory
-
-# pool:
-#   vmImage: 'ubuntu-latest'
-
-# steps:
-# # Step 1: Install Terraform (latest version managed by Terraform task)
-# - task: TerraformInstaller@0
-#   inputs:
-#     terraformVersion: 'latest'
-#   displayName: Install Terraform
-
-# # Step 2: Azure Login using Service Connection
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'Tenant' # Use the "Tenant" service connection
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: |
-#       az account show
-#   displayName: Azure Login
-
-# # Step 3: Terraform Init in Root Directory (Local State)
-# - script: |
-#     terraform init
-#   workingDirectory: $(TF_WORKING_DIR)
-#   displayName: Terraform Init (Root Directory)
-
-# # Step 4: Terraform Init in `lib` Directory (Local State)
-# - script: |
-#     terraform init
-#   workingDirectory: $(TF_LIB_DIR)
-#   displayName: Terraform Init (Lib Directory)
-
-# # Step 5: Terraform Validate in Root Directory
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'validate'
-#     workingDirectory: $(TF_WORKING_DIR)
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Validate (Root Directory)
-
-# # Step 6: Terraform Plan in Root Directory
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'plan'
-#     workingDirectory: $(TF_WORKING_DIR)
-#     commandOptions: '-out=tfplan'
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Plan (Root Directory)
-
-# # Step 7: Terraform Apply in Root Directory
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'apply'
-#     workingDirectory: $(TF_WORKING_DIR)
-#     commandOptions: '-auto-approve tfplan'
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Apply (Root Directory)
-
-# # Optional: Terraform Validate, Plan, and Apply in Lib Directory
-# # Uncomment if required for operations in `lib` directory
-# # - task: TerraformTaskV4@4
-# #   inputs:
-# #     command: 'validate'
-# #     workingDirectory: $(TF_LIB_DIR)
-# #     environmentServiceNameAzureRM: 'Tenant'
-# #   displayName: Terraform Validate (Lib Directory)
-
-# # - task: TerraformTaskV4@4
-# #   inputs:
-# #     command: 'plan'
-# #     workingDirectory: $(TF_LIB_DIR)
-# #     commandOptions: '-out=tfplan'
-# #     environmentServiceNameAzureRM: 'Tenant'
-# #   displayName: Terraform Plan (Lib Directory)
-
-# # - task: TerraformTaskV4@4
-# #   inputs:
-# #     command: 'apply'
-# #     workingDirectory: $(TF_LIB_DIR)
-# #     commandOptions: '-auto-approve tfplan'
-# #     environmentServiceNameAzureRM: 'Tenant'
-# #   displayName: Terraform Apply (Lib Directory)
-
 trigger:
 - main # Triggers on changes to the `main` branch
 
@@ -104,15 +14,15 @@ steps:
     terraformVersion: 'latest'
   displayName: Install Terraform
 
-# Step 2: Azure Login using Service Connection
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Tenant' # Use the "Tenant" service connection
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      az account show
-  displayName: Azure Login
+# Step 2: Azure Login using Service Principal
+- script: |
+    export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+    export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
+    export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+    export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+    az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+    az account set --subscription $ARM_SUBSCRIPTION_ID
+  displayName: Azure Login Using Service Principal
 
 # Step 3: Terraform Init Without Backend Configuration
 - script: |
@@ -121,40 +31,22 @@ steps:
   displayName: Terraform Init (Local State)
 
 # Step 4: Terraform Validate
-- task: TerraformTaskV4@4
-  inputs:
-    command: 'validate'
-    workingDirectory: $(TF_WORKING_DIR)
-    environmentServiceNameAzureRM: 'Tenant'
+- script: |
+    terraform validate
+  workingDirectory: $(TF_WORKING_DIR)
   displayName: Terraform Validate
 
 # Step 5: Terraform Plan
-- task: TerraformTaskV4@4
-  inputs:
-    command: 'plan'
-    workingDirectory: $(TF_WORKING_DIR)
-    commandOptions: '-out=tfplan'
-    environmentServiceNameAzureRM: 'Tenant'
+- script: |
+    terraform plan -out=tfplan
+  workingDirectory: $(TF_WORKING_DIR)
   displayName: Terraform Plan
 
-
-
 # Step 6: Terraform Apply (with Debugging)
-- task: TerraformTaskV4@4
-  inputs:
-    command: 'apply'
-    workingDirectory: $(TF_WORKING_DIR)
-    commandOptions: '-auto-approve tfplan'
-    environmentServiceNameAzureRM: 'Tenant'
+- script: |
+    terraform apply -auto-approve tfplan
+  workingDirectory: $(TF_WORKING_DIR)
   env:
     TF_LOG: DEBUG
   displayName: Terraform Apply (Debug)
 
-# # Step 6: Terraform Apply
-# - task: TerraformTaskV4@4
-#   inputs:
-#     command: 'apply'
-#     workingDirectory: $(TF_WORKING_DIR)
-#     commandOptions: '-auto-approve tfplan'
-#     environmentServiceNameAzureRM: 'Tenant'
-#   displayName: Terraform Apply
