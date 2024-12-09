@@ -148,4 +148,3 @@ module "alz_architecture" {
   }
 }
 
-ManagementGroupNotFound
