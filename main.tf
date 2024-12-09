@@ -127,7 +127,8 @@ module "alz_architecture" {
   retries = {
     management_groups = {
       error_message_regex = [
-        "AuthorizationFailed",  "ManagementGroupNotFound",    # Handle eventual consistency issues with management groups
+        "AuthorizationFailed",
+        "ManagementGroupNotFound",    # Handle eventual consistency issues with management groups
         "ResourceNotFound"     # Retry if the resource isn't immediately available
       ]
       interval_seconds     = 10    # Retry every 10 seconds
