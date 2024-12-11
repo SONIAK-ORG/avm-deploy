@@ -17,8 +17,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # Specify the hard-coded environment
-    environment: Deploy
+
 
     permissions:
       id-token: write  # Required for OIDC
