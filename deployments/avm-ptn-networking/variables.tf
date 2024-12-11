@@ -40,13 +40,6 @@ variable "subscription_id_connectivity" {
   description = "Subscription ID to use for \"connectivity\" resources."
 }
 
-
-variable "subscription_id_connectivity" {
-  type        = string
-  description = "Subscription ID to use for \"connectivity\" resources."
-}
-
-
 variable "tenant_id" {
   type        = string
   description = "Subscription ID to use for \"connectivity\" resources."
