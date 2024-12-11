@@ -1,0 +1,105 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
+  "name": "custom",
+  "management_groups": [
+    {
+      "archetypes": [
+        "root"
+      ],
+      "display_name": "custom-root",
+      "exists": false,
+      "id": "custom-root",
+      "parent_id": null
+    },
+    {
+      "archetypes": [
+        "platform"
+      ],
+      "display_name": "custom-Platform",
+      "exists": false,
+      "id": "custom-platform",
+      "parent_id": "custom-root"
+    },
+    {
+      "archetypes": [
+        "landing_zones"
+      ],
+      "display_name": "custom-Landing zones",
+      "exists": false,
+      "id": "custom-landingzones",
+      "parent_id": "custom-root"
+    },
+    {
+      "archetypes": [
+        "corp"
+      ],
+      "display_name": "custom-Corp",
+      "exists": false,
+      "id": "custom-corp",
+      "parent_id": "custom-landingzones"
+    },
+    {
+      "archetypes": [
+        "online"
+      ],
+      "display_name": "custom-Online",
+      "exists": false,
+      "id": "custom-online",
+      "parent_id": "custom-landingzones"
+    },
+    {
+      "archetypes": [
+        "sandboxes"
+      ],
+      "display_name": "custom-Sandboxes",
+      "exists": false,
+      "id": "custom-sandboxes",
+      "parent_id": "custom-root"
+    },
+    {
+      "archetypes": [
+        "management"
+      ],
+      "display_name": "custom-Management",
+      "exists": false,
+      "id": "custom-management",
+      "parent_id": "custom-platform"
+    },
+    {
+      "archetypes": [
+        "connectivity"
+      ],
+      "display_name": "custom-Connectivity",
+      "exists": false,
+      "id": "custom-connectivity",
+      "parent_id": "custom-platform"
+    },
+    {
+      "archetypes": [
+        "identity"
+      ],
+      "display_name": "custom-Identity",
+      "exists": false,
+      "id": "custom-identity",
+      "parent_id": "custom-platform"
+    },
+    {
+      "archetypes": [
+        "security"
+      ],
+      "display_name": "custom-Security",
+      "exists": false,
+      "id": "custom-security",
+      "parent_id": "custom-platform"
+    },
+    {
+      "archetypes": [
+        "decommissioned"
+      ],
+      "display_name": "custom-Decommissioned",
+      "exists": false,
+      "id": "custom-decommissioned",
+      "parent_id": "custom-root"
+    }
+  ]
+}
