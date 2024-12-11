@@ -1,5 +1,5 @@
 # Enable Hub Networking deployment
-enable_virtualwan = true
+enable_virtualwan = false
 
 # Enable Hub Networking deployment
 # enable_hubnetworking = true
