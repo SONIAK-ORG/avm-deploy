@@ -1,0 +1,42 @@
+name: Deploy Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: "Module to deploy"
+        required: true
+        type: choice
+        options:
+          - avm-ptn-alz
+          - avm-ptn-alz-management
+          - avm-ptn-virtualwan
+          - avm-ptn-hubnetworking
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      - name: Initialize Terraform
+        run: |
+          cd deployments/${{ github.event.inputs.module }}
+          terraform init
+
+      - name: Terraform Plan
+        run: |
+          cd deployments/${{ github.event.inputs.module }}
+          terraform plan -var-file="terraform.tfvars"
+
+      - name: Terraform Apply
+        run: |
+          cd deployments/${{ github.event.inputs.module }}
+          terraform apply -auto-approve -var-file="terraform.tfvars"
