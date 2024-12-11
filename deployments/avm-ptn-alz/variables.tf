@@ -10,14 +10,23 @@ variable "tenant_id" {
 
 variable "location" {
   type = string
+  default = "uksouth"
 }
 
 variable "architecture_name" {
   type = string
+  default = "custom"
 }
 
 variable "parent_resource_id" {
   type = string
+  default = ""
 }
 
-
+variable "subscription_placement" {
+  description = "A map of subscriptions to place into management groups"
+  type = map(object({
+    subscription_id       = string
+    management_group_name = string
+  }))
+}
