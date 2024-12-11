@@ -1,2 +1,3 @@
-architecture_name = "custom"
-location           = "eastus"
+location           = "uksouth"
+architecture_name  = "custom"
+
