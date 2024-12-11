@@ -137,7 +137,8 @@ module "alz_architecture" {
       multiplier           = 2     # Exponential backoff multiplier
       randomization_factor = 0.5   # Add randomness to retry intervals
     }
-
   }
+  subscription_placement = var.subscription_placement
+
 }
 
