@@ -17,6 +17,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # Specify the hard-coded environment
+    environment: Deploy
+
     permissions:
       id-token: write  # Required for OIDC
       contents: read
@@ -63,3 +66,4 @@ jobs:
         run: |
           cd deployments/${{ github.event.inputs.module }}
           terraform apply -auto-approve -var-file="terraform.tfvars"
+
