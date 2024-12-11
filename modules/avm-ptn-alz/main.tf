@@ -113,6 +113,15 @@ module "alz_architecture" {
        destroy = "0s"
      }
 
+    after_policy_definitions = {
+        create  = "30s"
+        destroy = "0s"
+      }
+      after_policy_set_definitions = {
+        create  = "30s"
+        destroy = "0s"
+      }
+
    }
 
   # Retries Configuration
