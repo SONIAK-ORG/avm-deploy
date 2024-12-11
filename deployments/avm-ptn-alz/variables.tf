@@ -15,12 +15,10 @@ variable "location" {
 
 variable "architecture_name" {
   type = string
-  default = "custom"
 }
 
 variable "parent_resource_id" {
   type = string
-  default = ""
 }
 
 
