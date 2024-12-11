@@ -1,5 +1,5 @@
 # VirtualWAN module
-module "virtualwan" {
+module "vwan_with_vhub" {
   source = "Azure/terraform-azurerm-avm-ptn-virtualwan/azurerm" 
   version = "0.5.3"  
   location              = var.location
