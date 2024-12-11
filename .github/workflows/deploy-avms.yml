@@ -10,8 +10,7 @@ on:
         options:
           - avm-ptn-alz
           - avm-ptn-alz-management
-          - avm-ptn-virtualwan
-          - avm-ptn-hubnetworking
+          - avm-ptn-networking
 
 jobs:
   deploy:
