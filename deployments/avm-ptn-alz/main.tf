@@ -8,7 +8,7 @@ module "avm_ptn_alz" {
   location           = var.location 
 
   providers = {
-    azapi = azure.azapi
+    azapi = azapi
   }
 
   # Add other required module-specific variables as needed
