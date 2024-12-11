@@ -1,7 +1,7 @@
 # VirtualWAN module
 module "virtualwan" {
   count  = var.enable_virtualwan ? 1 : 0
-  source = "../../modules/terraform-azurerm-avm-ptn-virtualwan"
+  source = "../../modules/avm-ptn-virtualwan"  
   
   location              = var.location
   resource_group_name   = var.resource_group_name
@@ -12,7 +12,7 @@ module "virtualwan" {
 # HubNetworking module
 module "hubnetworking" {
 #   count  = var.enable_hubnetworking ? 1 : 0
-  source = "../../modules/terraform-azurerm-avm-ptn-hubnetworking"
+  source = "../../modules/avm-ptn-hubnetworking"
   
   location              = var.location
   resource_group_name   = var.resource_group_name
