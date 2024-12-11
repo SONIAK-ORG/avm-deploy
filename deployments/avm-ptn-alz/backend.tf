@@ -4,5 +4,6 @@ terraform {
     storage_account_name = "terraformstate"
     container_name       = "tfstate"
     key                  = "avm-ptn-alz/terraform.tfstate"
+    use_oidc             = true  
   }
 }
