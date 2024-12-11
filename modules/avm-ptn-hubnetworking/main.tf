@@ -1,5 +1,5 @@
 # HubNetworking module
-module "hubnetworking" {
+module "hub" {
   source = "Azure/terraform-azurerm-avm-ptn-hubnetworking/azurerm"
   version = "0.4.0"  
   location              = var.location
