@@ -35,7 +35,7 @@ provider "alz" {
     }
   ]
 
-  tenant_id   =  "09583a4a-6ecd-403d-a1de-7847ab22da08"
+  tenant_id   = var.tenant_id
 }
 
 provider "azapi" {
