@@ -1,2 +1,2 @@
-architecture_name = "MyArchitecture"
+architecture_name = "custom"
 location           = "eastus"
