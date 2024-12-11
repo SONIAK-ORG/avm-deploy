@@ -104,7 +104,7 @@ module "alz_architecture" {
   source             = "Azure/avm-ptn-alz/azurerm"
   version            = "0.10.0"
   architecture_name  = var.architecture_name
-  parent_resource_id = data.azapi_client_config.current.tenant_id
+  parent_resource_id = var.parent_resource_id
   location           = var.location
 
    delays = {
