@@ -1,6 +1,6 @@
 # VirtualWAN module
 module "avm-ptn-virtualwan" {
-  source = "Azure/terraform-azurerm-avm-ptn-virtualwan/azurerm" 
+  source = "Azure/avm-ptn-virtualwan/azurerm"
   version = "0.5.3"  
   location              = var.location
   resource_group_name   = var.resource_group_name
