@@ -11,7 +11,6 @@ module "virtualwan" {
 
   providers = {
     azurerm = azurerm
-    azapi   = azapi
   }
 }
 
@@ -24,7 +23,6 @@ module "hubnetworking" {
 
   providers = {
     azurerm = azurerm
-    azapi   = azapi
   }
   
 
