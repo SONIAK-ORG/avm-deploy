@@ -4,7 +4,7 @@
 enable_virtualwan = false
 
 
-suffix = "alz"
+suffix = "network"
 
 # Enable Hub Networking deployment
 enable_hubnetworking = true
