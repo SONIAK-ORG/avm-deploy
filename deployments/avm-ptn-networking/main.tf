@@ -1,3 +1,14 @@
+locals {
+  updated_hub_virtual_networks = {
+    for key, vnet in var.hub_virtual_networks :
+    key => merge(vnet, {
+      resource_group_name = azurerm_resource_group.rg.name
+    })
+  }
+}
+
+
+
 resource "azurerm_resource_group" "rg" {
   location = var.location
   name     = "rg-hub-${var.suffix}"
@@ -23,17 +34,13 @@ module "virtualwan" {
 # HubNetworking module
 
 
-
-
 module "hubnetworking" {
   count  = var.enable_hubnetworking ? 1 : 0
   source = "../../modules/avm-ptn-hubnetworking"
 
   # Inject the resource_group_name without enforcing creation_enabled
-  hub_virtual_networks = {
-    for key, vnet in var.hub_virtual_networks :
-    key => merge(vnet, {
-      resource_group_name = azurerm_resource_group.rg.name
+  source              = "../../modules/avm-ptn-hubnetworking"
+  hub_virtual_networks = local.updated_hub_virtual_networks
 
     })
   }
