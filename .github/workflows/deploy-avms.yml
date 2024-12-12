@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy  # Add the environment name here
 
+
     permissions:
       id-token: write  # Required for OIDC
       contents: read
