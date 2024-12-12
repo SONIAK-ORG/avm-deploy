@@ -32,7 +32,6 @@ hub_virtual_networks = {
     name                = "hub-prod"
     address_space       = ["10.0.0.0/16"]
     location            = "uksouth"
-    # resource_group_name is removed; it will be injected dynamically
     firewall = {
       sku_name              = "AZFW_VNet"
       sku_tier              = "Standard"
