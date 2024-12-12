@@ -73,3 +73,10 @@ variable "allow_branch_to_branch_traffic" {
   description = "Switch to flip VWAN branch to branch traffic"
   type        = bool
 }
+
+
+variable "suffix" {
+  description = "A suffix to append to resource names for uniqueness"
+  type        = string
+  default     = "prod"  # You can set a default value or leave it without one
+}
