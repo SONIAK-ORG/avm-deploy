@@ -4,6 +4,6 @@ module "avm-ptn-virtualwan" {
   version = "0.5.3"  
   location              = var.location
   resource_group_name   = var.resource_group_name
-  virtualwan_name       = var.virtualwan_name
+  virtual_wan_name      = var.virtual_wan_name
   # Add other required variables for VirtualWAN module
 }
