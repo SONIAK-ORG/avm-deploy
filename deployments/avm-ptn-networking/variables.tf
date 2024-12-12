@@ -17,11 +17,11 @@ variable "hub_name" {
   type        = string
 }
 
-# variable "enable_hubnetworking" {
-#   description = "Enable Hub Networking deployment"
-#   type        = bool
-#   default     = false
-# }
+ variable "enable_hubnetworking" {
+   description = "Enable Hub Networking deployment"
+   type        = bool
+   default     = false
+ }
 
 variable "location" {
   description = "Azure region where resources will be deployed"
