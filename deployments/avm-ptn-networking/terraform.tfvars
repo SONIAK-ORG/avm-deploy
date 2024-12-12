@@ -15,3 +15,5 @@ resource_group = "custom-resource-group"
 
 
 hub_name  = "alz-hub"
+
+subscription_id_connectivity = "6ab5ad42-6a7d-4f21-a926-9ce61b67df96"
