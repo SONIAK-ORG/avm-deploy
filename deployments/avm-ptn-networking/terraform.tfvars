@@ -13,7 +13,7 @@ location = "eastus"
 resource_group_name = "LZ-Hub"
 
 # The name of the Virtual WAN
-virtualwan_name = "Wvan-hub"
+virtual_wan_name = "Wvan-hub"
 
 # The name of the Hub
 hub_name = "alz-hub"
