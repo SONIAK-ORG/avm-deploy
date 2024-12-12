@@ -3,6 +3,9 @@
 # Enable Virtual WAN deployment
 enable_virtualwan = false
 
+
+suffix = "alz"
+
 # Enable Hub Networking deployment
 enable_hubnetworking = true
 
