@@ -4,6 +4,8 @@ module "avm-ptn-virtualwan" {
   version = "0.5.3"  
   location              = var.location
   resource_group_name   = var.resource_group_name
-  virtualwan_name       = var.virtualwan_name
+  create_resource_group = true
+  virtual_wan_name      = var.virtual_wan_name
+  allow_branch_to_branch_traffic = var.allow_branch_to_branch_traffic
   # Add other required variables for VirtualWAN module
 }
