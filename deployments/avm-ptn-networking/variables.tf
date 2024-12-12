@@ -46,25 +46,25 @@ variable "tenant_id" {
   default = "832b0908-3585-4294-a01c-7763fc195006"
 }
 
- variable "hub_virtual_networks" {
-   description = "Configuration for hub virtual networks."
-   type = map(object({
-     name                            = string
-     address_space                   = list(string)
-     location                        = string
-     resource_group_name             = string
-     resource_group_creation_enabled = bool
-     firewall = object({
-       sku_name              = string
-       sku_tier              = string
-       subnet_address_prefix = string
-     })
-     subnets = map(object({
-       name             = string
-       address_prefixes = list(string)
-     }))
-   }))
- }
+variable "hub_virtual_networks" {
+  description = "Configuration for hub virtual networks."
+  type = map(object({
+    name                            = string
+    address_space                   = list(string)
+    location                        = string
+    resource_group_name             = string
+    resource_group_creation_enabled = bool
+    firewall = object({
+      sku_name              = string
+      sku_tier              = string
+      subnet_address_prefix = string
+    })
+    subnets = map(object({
+      name             = string
+      address_prefixes = list(string)
+    }))
+  }))
+}
 
 
 
@@ -80,3 +80,8 @@ variable "suffix" {
   type        = string
   default     = "prod"  # You can set a default value or leave it without one
 }
+
+
+
+
+
