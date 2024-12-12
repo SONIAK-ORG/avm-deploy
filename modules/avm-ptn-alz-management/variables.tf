@@ -13,14 +13,7 @@ variable "location" {
   default = "uksouth"
 }
 
-variable "automation_account_name" {
+variable "architecture_name" {
   type = string
   default = "custom"
 }
-
-variable "log_analytics_workspace_name" {
-  type = string
-}
-variable "resource_group_name" {
-  type = string
-  }
