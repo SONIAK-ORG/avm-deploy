@@ -1,3 +1,9 @@
+resource "azurerm_resource_group" "rg" {
+  location = var.location
+  name     = "rg-hub-${var.suffix}"
+}
+
+
 # VirtualWAN module
 module "virtualwan" {
   count  = var.enable_virtualwan ? 1 : 0
