@@ -43,3 +43,6 @@ hub_virtual_networks = {
   }
 }
 
+
+allow_branch_to_branch_traffic = true
+
