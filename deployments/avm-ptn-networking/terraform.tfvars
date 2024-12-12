@@ -11,7 +11,7 @@ location = "uksouth"
 resource_group = "custom-resource-group"
 
 
-#virtualwan_name  = "Wvan-hub"
+virtualwan_name  = "Wvan-hub"
 
 
 hub_name  = "alz-hub"
