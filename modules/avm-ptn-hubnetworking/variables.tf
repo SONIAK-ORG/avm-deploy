@@ -6,7 +6,7 @@ variable "hub_virtual_networks" {
     name                            = string
     address_space                   = list(string)
     location                        = string
-    resource_group_name             = string
+    #resource_group_name             = string
     resource_group_creation_enabled = bool
     firewall = object({
       sku_name              = string
