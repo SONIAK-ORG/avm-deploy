@@ -21,16 +21,23 @@ module "virtualwan" {
 }
 
 # HubNetworking module
+
 module "hubnetworking" {
-#   count  = var.enable_hubnetworking ? 1 : 0
+  count  = var.enable_hubnetworking ? 1 : 0
   source = "../../modules/avm-ptn-hubnetworking"
 
-  hub_virtual_networks = var.hub_virtual_networks
+  # Inject the resource_group_name and enforce creation_enabled as true
+  hub_virtual_networks = {
+    for key, vnet in var.hub_virtual_networks :
+    key => merge(vnet, {
+      resource_group_name             = azurerm_resource_group.rg.name
+      resource_group_creation_enabled = true  # Always set to true
+    })
+  }
+
+  # Add other required variables for HubNetworking module
 
   providers = {
     azurerm = azurerm
   }
-  
-
-  # Add other required variables for HubNetworking module
 }
