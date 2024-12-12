@@ -31,7 +31,7 @@ module "hubnetworking" {
     for key, vnet in var.hub_virtual_networks :
     key => merge(vnet, {
       resource_group_name             = azurerm_resource_group.rg.name
-      resource_group_creation_enabled = true  # Always set to true
+      resource_group = true  # Always set to true
     })
   }
 
