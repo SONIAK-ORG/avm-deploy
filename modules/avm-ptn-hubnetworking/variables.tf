@@ -1,13 +1,10 @@
-
-
 variable "hub_virtual_networks" {
   description = "Configuration for hub virtual networks."
   type = map(object({
-    name                            = string
-    address_space                   = list(string)
-    location                        = string
-    #resource_group_name             = string
-    resource_group_creation_enabled = bool
+    name                = string
+    address_space       = list(string)
+    location            = string
+    resource_group_name = string  # Retained for dynamic injection
     firewall = object({
       sku_name              = string
       sku_tier              = string
