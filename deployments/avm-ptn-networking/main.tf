@@ -7,6 +7,11 @@ locals {
   }
 }
 
+
+output "debug_hub_virtual_networks" {
+  value = local.updated_hub_virtual_networks
+}
+
 resource "azurerm_resource_group" "rg" {
   location = var.location
   name     = "rg-hub-${var.suffix}"
