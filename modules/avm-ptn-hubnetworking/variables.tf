@@ -31,3 +31,8 @@ variable "hub_name" {
   description = "Name of the Hub Networking Virtual Hub"
   type        = string
 }
+
+variable "subscription_id_connectivity" {
+  type        = string
+  description = "Subscription ID to use for \"connectivity\" resources."
+}
