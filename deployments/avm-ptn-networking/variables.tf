@@ -6,7 +6,7 @@ variable "enable_virtualwan" {
 
 
 # VirtualWAN specific variables
-variable "virtualwan_name" {
+variable "virtual_wan_name" {
   description = "Name of the Virtual WAN"
   type        = string
 }
