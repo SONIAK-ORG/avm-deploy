@@ -8,6 +8,11 @@ module "virtualwan" {
   virtual_wan_name      = var.virtual_wan_name
   allow_branch_to_branch_traffic = var.allow_branch_to_branch_traffic
   # Add other required variables for VirtualWAN module
+
+  providers = {
+    azurerm = azurerm
+    azapi   = azapi
+  }
 }
 
 # HubNetworking module
@@ -16,6 +21,11 @@ module "hubnetworking" {
   source = "../../modules/avm-ptn-hubnetworking"
 
   hub_virtual_networks = var.hub_virtual_networks
+
+  providers = {
+    azurerm = azurerm
+    azapi   = azapi
+  }
   
 
   # Add other required variables for HubNetworking module
