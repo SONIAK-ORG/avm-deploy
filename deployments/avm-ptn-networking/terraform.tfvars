@@ -7,7 +7,7 @@ enable_virtualwan = false
 enable_hubnetworking = true
 
 # Azure region where resources will be deployed
-location = "eastus"
+location = "uksouth"
 
 # The name of the resource group to deploy resources into
 resource_group_name = "LZ-Hub"
