@@ -1,22 +1,3 @@
-locals {
-  updated_hub_virtual_networks = {
-    for key, vnet in var.hub_virtual_networks :
-    key => merge(vnet, {
-      resource_group_name = azurerm_resource_group.rg.name
-    })
-  }
-}
-
-
-output "debug_hub_virtual_networks" {
-  value = local.updated_hub_virtual_networks
-}
-
-resource "azurerm_resource_group" "rg" {
-  location = var.location
-  name     = "rg-hub-${var.suffix}"
-}
-
 # VirtualWAN module
 module "virtualwan" {
   count  = var.enable_virtualwan ? 1 : 0
