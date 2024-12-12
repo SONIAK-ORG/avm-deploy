@@ -13,9 +13,9 @@ module "virtualwan" {
 module "hubnetworking" {
 #   count  = var.enable_hubnetworking ? 1 : 0
   source = "../../modules/avm-ptn-hubnetworking"
+
+  hub_virtual_networks = var.hub_virtual_networks
   
-  location              = var.location
-  resource_group_name   = var.resource_group_name
-  hub_name              = var.hub_name
+
   # Add other required variables for HubNetworking module
 }

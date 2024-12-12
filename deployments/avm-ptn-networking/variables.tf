@@ -29,7 +29,7 @@ variable "location" {
   default     = "uksouth"
 }
 
-variable "resource_group" {
+variable "resource_group_name" {
   description = "The name of the resource group to deploy resources into"
   type        = string
   default     = "my-default-resource-group"
@@ -45,3 +45,23 @@ variable "tenant_id" {
   description = "Subscription ID to use for \"connectivity\" resources."
   default = "09583a4a-6ecd-403d-a1de-7847ab22da08"
 }
+
+ variable "hub_virtual_networks" {
+   description = "Configuration for hub virtual networks."
+   type = map(object({
+     name                            = string
+     address_space                   = list(string)
+     location                        = string
+     resource_group_name             = string
+     resource_group_creation_enabled = bool
+     firewall = object({
+       sku_name              = string
+       sku_tier              = string
+       subnet_address_prefix = string
+     })
+     subnets = map(object({
+       name             = string
+       address_prefixes = list(string)
+     }))
+   }))
+ }
