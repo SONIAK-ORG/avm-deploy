@@ -1,5 +1,5 @@
 module "landing_zones" {
-  source  = "Azure/lz-vending/azurerm"
+  source  = "../../modules/Lz-vending"
   version = "4.1.5"
 
   for_each = var.landing_zones
