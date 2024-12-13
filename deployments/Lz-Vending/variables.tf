@@ -8,10 +8,12 @@ variable "landing_zones" {
       name                 = string
       address_space        = list(string)
       location             = string
+      resource_group_name  = string
       mesh_peering_enabled = bool
     }))
   }))
 }
+
 
 
 variable "tenant_id" {
