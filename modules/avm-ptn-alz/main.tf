@@ -75,28 +75,20 @@ module "alz_architecture" {
 
   # Policy Assignments to Modify
   policy_assignments_to_modify = {
-       custom-root = {
-         policy_assignments = {
-           deploy-diag-logscat = {
-             enforcement_mode = "Disabled" # Disable enforcement for resource logging policy
-           }
-         }
-       }
     custom-root = {
       policy_assignments = {
+        deploy-diag-logscat = {
+          enforcement_mode = "Disabled" # Disable enforcement for resource logging policy
+        }
         deploy-azactivity-log = {
           enforcement_mode = "Disabled" # Disable enforcement for activity logs policy
         }
-      }
-    }
-    custom-root = {
-      policy_assignments = {
         enable-ddos-vnet = {
           enforcement_mode = "Disabled" # Disable enforcement for DDoS protection policy
-          }
         }
       }
     }
   }
 }
+
 
