@@ -22,7 +22,7 @@ landing_zones = {
     subscription_display_name = "Production Subscription"
     subscription_id           = "cf0f721d-6338-4687-aecd-3c2a66535c66"
     virtual_network_enabled = true
-    network_watcher_resource_group_enabled = true
+    network_watcher_resource_group_enabled = false
 
     virtual_networks = {
       vnet2 = {
