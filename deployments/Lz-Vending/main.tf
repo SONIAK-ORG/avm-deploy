@@ -1,5 +1,5 @@
 module "landing_zones" {
-  source  = "../../modules/Lz-vending"
+  source  = "../../modules/Lz-Vending"
   version = "4.1.5"
 
   for_each = var.landing_zones
