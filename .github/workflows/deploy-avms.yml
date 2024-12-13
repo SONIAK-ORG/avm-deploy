@@ -11,7 +11,7 @@ on:
           - avm-ptn-alz
           - avm-ptn-alz-management
           - avm-ptn-networking
-          - avm lz-Vending
+          - Lz-Vending
 
 jobs:
   deploy:
