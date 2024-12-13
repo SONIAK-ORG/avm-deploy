@@ -5,7 +5,7 @@ variable "landing_zones" {
     subscription_display_name = string
     # subscription_billing_scope = string
     # subscription_alias_enabled = bool
-    subscription_id = stgring
+    subscription_id = string
     virtual_networks          = map(object({
       name                 = string
       address_space        = list(string)
