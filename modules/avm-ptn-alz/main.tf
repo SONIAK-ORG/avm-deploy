@@ -78,15 +78,23 @@ module "alz_architecture" {
     custom-root = {
       policy_assignments = {
         Deploy-AzActivity-Log = {
-          enforcement_mode = "DoNotEnforce" # Disable enforcement for Azure Activity logs
+          enforcement_mode = "DoNotEnforce" 
         },
         Deploy-Diag-LogsCat = {
-          enforcement_mode = "DoNotEnforce" # Disable enforcement for resource logging
+          enforcement_mode = "DoNotEnforce" 
+        }
+      }
+    },
+    custom-connectivity = {
+      policy_assignments = {
+        Enable-DDoS-VNET = {
+          enforcement_mode = "DoNotEnforce" 
         }
       }
     }
   }
 }
+
 
 
 
