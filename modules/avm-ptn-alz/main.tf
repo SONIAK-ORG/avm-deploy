@@ -84,14 +84,14 @@ module "alz_architecture" {
           enforcement_mode = "DoNotEnforce" # Disable enforcement for activity logs policy
         }
       }
-    },
-    custom-connectivity = {
-      policy_assignments = {
-        deploy-diag-logscat = {
-          enforcement_mode = "DoNotEnforce" # Disable enforcement for DDoS protection policy
-        }
-      }
     }
+# custom-connectivity = {
+#   policy_assignments = {
+#     deploy-diag-logscat = {
+#       enforcement_mode = "DoNotEnforce" # Disable enforcement for DDoS protection policy
+#     }
+#   }
+# }
   }
 }
 
