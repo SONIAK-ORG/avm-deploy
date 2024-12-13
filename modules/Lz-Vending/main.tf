@@ -1,4 +1,4 @@
-module "landing_zones" {
+module "lz_vending" {
   source  = "Azure/lz-vending/azurerm"
   version = "4.1.5"
 
