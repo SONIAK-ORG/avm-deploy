@@ -9,6 +9,7 @@ landing_zones = {
         name                 = "vnet1"
         address_space        = ["10.0.0.0/16"]
         location             = "East US"
+        resource_group_name  = "rg-vnet1" # Add this attribute
         mesh_peering_enabled = false
       }
     }
@@ -24,6 +25,7 @@ landing_zones = {
         name                 = "vnet2"
         address_space        = ["10.1.0.0/16"]
         location             = "West Europe"
+        resource_group_name  = "rg-vnet2" # Add this attribute
         mesh_peering_enabled = true
       }
     }
