@@ -74,14 +74,15 @@ module "alz_architecture" {
   subscription_placement = var.subscription_placement
 
   # Policy Assignments to Modify
-policy_assignments_to_modify = {
-  custom-root = {
-    policy_assignments = {
-      Deploy-AzActivity-Log = {
-        enforcement_mode = "DoNotEnforce" # Disable enforcement for Azure Activity logs
-      },
-      Deploy-Diag-LogsCat = {
-        enforcement_mode = "DoNotEnforce" # Disable enforcement for resource logging
+  policy_assignments_to_modify = {
+    custom-root = {
+      policy_assignments = {
+        Deploy-AzActivity-Log = {
+          enforcement_mode = "DoNotEnforce" # Disable enforcement for Azure Activity logs
+        },
+        Deploy-Diag-LogsCat = {
+          enforcement_mode = "DoNotEnforce" # Disable enforcement for resource logging
+        }
       }
     }
   }
