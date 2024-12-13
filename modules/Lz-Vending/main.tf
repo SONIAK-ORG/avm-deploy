@@ -9,5 +9,7 @@ module "lz_vending" {
   virtual_networks         = each.value.virtual_networks
 
   disable_telemetry = false
+  virtual_network_enabled = true
+  network_watcher_resource_group_enabled = true
 }
 
