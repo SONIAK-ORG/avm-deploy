@@ -100,8 +100,7 @@ module "alz_architecture" {
 #     }
 #   }
 # }
-  }
-}
+
 
 
 
