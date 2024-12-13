@@ -8,6 +8,6 @@ module "lz_vending" {
   subscription_id          = each.value.subscription_id
   virtual_networks         = each.value.virtual_networks
 
-  disable_telemetry = true
+  disable_telemetry = false
 }
 
