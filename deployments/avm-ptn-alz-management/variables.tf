@@ -32,4 +32,3 @@ variable "log_analytics_workspace_name" {
   type = string
   default = "law-alz-vnext"
 }
-#test
