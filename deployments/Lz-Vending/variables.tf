@@ -5,6 +5,7 @@ variable "landing_zones" {
     subscription_display_name = string
     subscription_id           = string
     virtual_network_enabled   = bool
+    network_watcher_resource_group_enabled = bool
     virtual_networks          = map(object({
       name                 = string
       address_space        = list(string)
