@@ -1,13 +1,13 @@
 # terraform.tfvars
 
 # Enable Virtual WAN deployment
-enable_virtualwan = true
+enable_virtualwan = false
 
 
 suffix = "network"
 
 # Enable Hub Networking deployment
-enable_hubnetworking = false
+enable_hubnetworking = true
 
 # Azure region where resources will be deployed
 location = "uksouth"
