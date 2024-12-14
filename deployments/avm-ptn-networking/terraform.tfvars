@@ -7,7 +7,7 @@ enable_virtualwan = true
 suffix = "network"
 
 # Enable Hub Networking deployment
-enable_hubnetworking = true
+enable_hubnetworking = false
 
 # Azure region where resources will be deployed
 location = "uksouth"
