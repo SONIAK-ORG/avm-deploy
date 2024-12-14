@@ -63,5 +63,5 @@ jobs:
       - name: Terraform Apply
         run: |
           cd deployments/${{ github.event.inputs.module }}
-          terraform apply -auto-approve -var-file="terraform.tfvars"
+          terraform destroy -auto-approve -var-file="terraform.tfvars"
 
