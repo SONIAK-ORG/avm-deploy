@@ -1,7 +1,7 @@
 # terraform.tfvars
 
 # Enable Virtual WAN deployment
-enable_virtualwan = false
+enable_virtualwan = true
 
 
 suffix = "network"
