@@ -9,3 +9,27 @@ module "landing_zones" {
 #  virtual_networks         = each.value.virtual_networks
 }
 
+
+# Search for all resources with the 'deploy' tag
+data "azurerm_resources" "deploy_tagged_resources" {
+  tag = {
+    "deploy" = "ready"
+  }
+}
+
+# Add a new tag "name = raphael" to all resources returned by the data source
+resource "azurerm_resource_tag" "add_raphael_tag" {
+  for_each = toset(data.azurerm_resources.deploy_tagged_resources.resources[*].id)
+
+  resource_id = each.key
+
+  # Merge existing tags with the new tag
+  tags = merge(
+    data.azurerm_resources.deploy_tagged_resources.resources[each.key].tags,
+    {
+      "name" = "raphael"
+    }
+  )
+}
+
+
