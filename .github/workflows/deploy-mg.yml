@@ -1,0 +1,109 @@
+---
+name: Deploy AVM-PTN-ALZ
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Action to perform (apply/destroy)"
+        required: true
+        type: choice
+        options:
+          - apply
+          - destroy
+
+jobs:
+  validate:
+    name: Validate Plan
+    runs-on: ubuntu-latest
+    environment: validation
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set Azure Environment Variables
+        run: |
+          echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+
+      - name: Debug Azure Environment Variables
+        run: |
+          echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
+          echo "ARM_TENANT_ID=$ARM_TENANT_ID"
+          echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.2
+
+      - name: Terraform Init
+        run: |
+          cd deployments/avm-ptn-alz
+          terraform init
+
+      - name: Terraform Plan
+        run: |
+          cd deployments/avm-ptn-alz
+          terraform plan -out=tfplan -var-file="terraform.tfvars"
+
+  deploy:
+    name: Deploy Plan
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: Deploy
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set Azure Environment Variables
+        run: |
+          echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+
+      - name: Debug Azure Environment Variables
+        run: |
+          echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
+          echo "ARM_TENANT_ID=$ARM_TENANT_ID"
+          echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.2
+
+      - name: Terraform Init
+        run: |
+          cd deployments/avm-ptn-alz
+          terraform init
+
+      - name: Terraform Apply/Destroy
+        run: |
+          cd deployments/avm-ptn-alz
+          terraform ${{ github.event.inputs.action }} -auto-approve -var-file="terraform.tfvars"
