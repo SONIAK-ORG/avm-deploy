@@ -82,30 +82,20 @@ variable "suffix" {
 }
 
 
+
+
+
+
+
 variable "virtual_hubs" {
   description = "Map of hubs to configure Azure Virtual WAN hubs in multiple regions."
   type = map(object({
+    name               = string
     location           = string
-    hub_address_prefix = string
+    address_prefix     = string
     sku                = string
     routing_preference = string
   }))
-
-  default = {
-    primary-hub = {
-      location              = "East US"
-      hub_address_prefix    = "10.0.0.0/24"
-      sku                   = "Standard"
-      routing_preference    = "Microsoft Network"
-    }
-
-    secondary-hub = {
-      location              = "West US"
-      hub_address_prefix    = "10.1.0.0/24"
-      sku                   = "Standard"
-      routing_preference    = "Microsoft Network"
-    }
-  }
 }
 
 
