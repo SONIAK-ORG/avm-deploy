@@ -34,26 +34,6 @@ virtual_hubs = {
     address_prefix       = "10.0.0.0/24"
     sku                  = "Standard"
     routing_preference   = "Microsoft Network"
-
-    firewall = {
-      virtual_hub_key      = "primary-hub"
-      sku_name             = "AZFW_VNet"
-      sku_tier             = "Standard"
-      threat_intel_mode    = "Alert"
-      vhub_public_ip_count = "1"
-      tags = {
-        environment = "dev"
-        deployment  = "terraform"
-      }
-      default_ip_configuration = {
-        name = "default-ip-config"
-        public_ip_config = {
-          name       = ["public-ip"]
-          ip_version = "IPv4"
-          sku_tier   = "Regional"
-        }
-      }
-    }
   }
 
   secondary-hub = {
@@ -62,26 +42,6 @@ virtual_hubs = {
     address_prefix       = "10.1.0.0/24"
     sku                  = "Standard"
     routing_preference   = "Microsoft Network"
-
-    firewall = {
-      virtual_hub_key      = "secondary-hub"
-      sku_name             = "AZFW_VNet"
-      sku_tier             = "Standard"
-      threat_intel_mode    = "Alert"
-      vhub_public_ip_count = "1"
-      tags = {
-        environment = "dev"
-        deployment  = "terraform"
-      }
-      default_ip_configuration = {
-        name = "default-ip-config"
-        public_ip_config = {
-          name       = ["public-ip"]
-          ip_version = "IPv4"
-          sku_tier   = "Regional"
-        }
-      }
-    }
   }
 }
 
