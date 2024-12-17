@@ -22,7 +22,7 @@ virtual_wan_name = "Wvan-hub"
 hub_name = "alz-hub"
 
 # Subscription ID for connectivity
-subscription_id_connectivity = "6ab5ad42-6a7d-4f21-a926-9ce61b67df96"
+subscription_id_connectivity = "d542cb6b-9712-4344-b018-b785d8544d2a"
 
 # Configuration for hub virtual networks
 
