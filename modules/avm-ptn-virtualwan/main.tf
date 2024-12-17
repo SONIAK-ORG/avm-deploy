@@ -9,5 +9,6 @@ module "avm-ptn-virtualwan" {
   allow_branch_to_branch_traffic = var.allow_branch_to_branch_traffic
   enable_telemetry = false
   virtual_hubs = var.virtual_hubs
+  firewalls =  var.firewalls
   # Add other required variables for VirtualWAN module
 }
