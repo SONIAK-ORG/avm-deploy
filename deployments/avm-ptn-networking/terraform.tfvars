@@ -25,7 +25,7 @@ hub_name = "alz-hub"
 subscription_id_connectivity = "d542cb6b-9712-4344-b018-b785d8544d2a"
 
 
-hubs = {
+virtual_hubs = {
   primary-hub = {
     location              = "East US"
     hub_address_prefix    = "10.0.0.0/24"
