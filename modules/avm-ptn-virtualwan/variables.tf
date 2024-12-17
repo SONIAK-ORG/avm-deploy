@@ -21,5 +21,29 @@ variable "allow_branch_to_branch_traffic" {
 }
 
 
+variable "hubs" {
+  description = "Map of hubs to configure Azure Virtual WAN hubs in multiple regions."
+  type = map(object({
+    location           = string
+    hub_address_prefix = string
+    sku                = string
+    routing_preference = string
+  }))
 
+  default = {
+    primary-hub = {
+      location              = "East US"
+      hub_address_prefix    = "10.0.0.0/24"
+      sku                   = "Standard"
+      routing_preference    = "Microsoft Network"
+    }
+
+    secondary-hub = {
+      location              = "West US"
+      hub_address_prefix    = "10.1.0.0/24"
+      sku                   = "Standard"
+      routing_preference    = "Microsoft Network"
+    }
+  }
+}
 
