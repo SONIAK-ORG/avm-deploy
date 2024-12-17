@@ -29,26 +29,25 @@ subscription_id_connectivity = "d542cb6b-9712-4344-b018-b785d8544d2a"
 
 virtual_hubs = {
   primary-hub = {
-    name                 = "primary-hub"
-    location             = "East US"
-    address_prefix       = "10.0.0.0/24"
-    sku                  = "Standard"
-    routing_preference   = "Microsoft Network"
-
+    name               = "primary-hub"
+    location           = "eastus"
+    address_prefix     = "10.0.0.0/24"
+    sku                = "Standard"
+    routing_preference = "ExpressRoute"
     firewall = {
       virtual_hub_key      = "primary-hub"
       sku_name             = "AZFW_VNet"
       sku_tier             = "Standard"
       threat_intel_mode    = "Alert"
-      vhub_public_ip_count = "1"
+      vhub_public_ip_count = "2"
       tags = {
-        environment = "dev"
+        environment = "prod"
         deployment  = "terraform"
       }
       default_ip_configuration = {
         name = "default-ip-config"
         public_ip_config = {
-          name       = ["public-ip"]
+          name       = ["firewall-public-ip"]
           ip_version = "IPv4"
           sku_tier   = "Regional"
         }
@@ -57,12 +56,11 @@ virtual_hubs = {
   }
 
   secondary-hub = {
-    name                 = "secondary-hub"
-    location             = "West US"
-    address_prefix       = "10.1.0.0/24"
-    sku                  = "Standard"
-    routing_preference   = "Microsoft Network"
-
+    name               = "secondary-hub"
+    location           = "westus"
+    address_prefix     = "10.1.0.0/24"
+    sku                = "Standard"
+    routing_preference = "ExpressRoute"
     firewall = {
       virtual_hub_key      = "secondary-hub"
       sku_name             = "AZFW_VNet"
@@ -76,7 +74,7 @@ virtual_hubs = {
       default_ip_configuration = {
         name = "default-ip-config"
         public_ip_config = {
-          name       = ["public-ip"]
+          name       = ["firewall-public-ip"]
           ip_version = "IPv4"
           sku_tier   = "Regional"
         }
@@ -84,6 +82,7 @@ virtual_hubs = {
     }
   }
 }
+
 
 
 
