@@ -39,6 +39,7 @@ variable "firewalls" {
     virtual_hub_key      = string
     sku_name             = string
     sku_tier             = string
+    name                 = optional(string)
     threat_intel_mode    = optional(string)
     vhub_public_ip_count = optional(string)
     tags                 = optional(map(string))
@@ -52,4 +53,3 @@ variable "firewalls" {
     }))
   }))
 }
-
