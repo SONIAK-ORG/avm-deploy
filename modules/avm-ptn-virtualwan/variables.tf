@@ -32,3 +32,24 @@ variable "virtual_hubs" {
   }))
 }
 
+
+variable "firewalls" {
+  description = "Map of firewalls to configure Azure Firewall resources within hubs."
+  type = map(object({
+    virtual_hub_key      = string
+    sku_name             = string
+    sku_tier             = string
+    threat_intel_mode    = optional(string)
+    vhub_public_ip_count = optional(string)
+    tags                 = optional(map(string))
+    default_ip_configuration = optional(object({
+      name = optional(string)
+      public_ip_config = optional(object({
+        name       = optional(list(string))
+        ip_version = optional(string)
+        sku_tier   = optional(string)
+      }))
+    }))
+  }))
+}
+
