@@ -46,6 +46,28 @@ virtual_hubs = {
 }
 
 
+firewalls = {
+  primary-firewall = {
+    virtual_hub_key      = "primary-hub"
+    sku_name             = "AZFW_VNet"
+    sku_tier             = "Standard"
+    threat_intel_mode    = "Alert"
+    vhub_public_ip_count = "2"
+    tags = {
+      environment = "production"
+      owner       = "network-team"
+    }
+    default_ip_configuration = {
+      name = "primary-ip-config"
+      public_ip_config = {
+        name       = ["primary-firewall-public-ip"]
+        ip_version = "IPv4"
+        sku_tier   = "Regional"
+      }
+    }
+  }
+
+
 
 
 
