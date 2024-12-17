@@ -21,7 +21,7 @@ variable "allow_branch_to_branch_traffic" {
 }
 
 
-variable "hubs" {
+variable "hub_virtual_networks" {
   description = "Map of hubs to configure Azure Virtual WAN hubs in multiple regions."
   type = map(object({
     name               = string
