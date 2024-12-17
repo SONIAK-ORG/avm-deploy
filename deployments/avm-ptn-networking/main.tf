@@ -9,7 +9,7 @@ module "virtualwan" {
   allow_branch_to_branch_traffic = var.allow_branch_to_branch_traffic
   # Add other required variables for VirtualWAN module
 
-  hubs = var.hubs
+  virtual_hubs = var.virtual_hubs
 
   providers = {
     azurerm = azurerm
