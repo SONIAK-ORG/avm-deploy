@@ -67,6 +67,27 @@ firewalls = {
     }
   }
 
+  secondary-firewall = {
+    virtual_hub_key      = "secondary-hub"
+    sku_name             = "AZFW_VNet"
+    sku_tier             = "Standard"
+    threat_intel_mode    = "Deny"
+    vhub_public_ip_count = "1"
+    tags = {
+      environment = "development"
+      owner       = "network-team"
+    }
+    default_ip_configuration = {
+      name = "secondary-ip-config"
+      public_ip_config = {
+        name       = ["secondary-firewall-public-ip"]
+        ip_version = "IPv4"
+        sku_tier   = "Regional"
+      }
+    }
+  }
+}
+
 
 
 
