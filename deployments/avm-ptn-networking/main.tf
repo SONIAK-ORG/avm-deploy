@@ -10,6 +10,7 @@ module "virtualwan" {
   # Add other required variables for VirtualWAN module
 
   virtual_hubs = var.virtual_hubs
+  firewalls =  var.firewalls
 
   providers = {
     azurerm = azurerm
