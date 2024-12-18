@@ -13,7 +13,7 @@ landing_zones = {
         location             = "uksouth"
         resource_group_name  = "rg-vnet1" # Add this attribute
         mesh_peering_enabled = true
-        hub_network_resource_id = '''
+        hub_network_resource_id = "/subscriptions/d542cb6b-9712-4344-b018-b785d8544d2a/resourceGroups/LZ-Hub/providers/Microsoft.Network/virtualHubs/primary-hub"
       }
     }
   }
