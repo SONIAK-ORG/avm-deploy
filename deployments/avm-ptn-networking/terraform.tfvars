@@ -100,10 +100,10 @@ vpn_gateways = {
     bgp_settings = {
       asn = 65515
       instance_0_bgp_peering_address = {
-        custom_ips = ["192.168.1.1", "192.168.1.2"]
+        custom_ips = ["169.254.1.1", "169.254.1.2"]
       }
       instance_1_bgp_peering_address = {
-        custom_ips = ["192.168.2.1", "192.168.2.2"]
+        custom_ips = ["169.254.2.1", "169.254.2.2"]
       }
       peer_weight = 0
     }
