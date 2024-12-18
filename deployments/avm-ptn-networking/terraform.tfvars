@@ -91,6 +91,26 @@ firewalls = {
 }
 
 
+vpn_gateways = {
+  primary-gateway = {
+    name                                  = "primary-vpn-gateway"
+    virtual_hub_key                       = "primary-hub"
+    tags                                  = { environment = "production", owner = "network-team" }
+    bgp_route_translation_for_nat_enabled = false
+    bgp_settings = {
+      asn = 65001
+      instance_0_bgp_peering_address = {
+        custom_ips = ["192.168.1.1", "192.168.1.2"]
+      }
+      instance_1_bgp_peering_address = {
+        custom_ips = ["192.168.2.1", "192.168.2.2"]
+      }
+      peer_weight = 0
+    }
+    routing_preference = "Internet"
+    scale_unit         = 2
+  }
+}
 
 
 
