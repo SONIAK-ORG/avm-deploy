@@ -10,11 +10,5 @@ module "landing_zones" {
 }
 
 
-# Search for all resources with the 'deploy' tag
-data "azurerm_resources" "deploy_tagged_resources" {
-  tag = {
-    "deploy" = "ready"
-  }
-}
 
 
