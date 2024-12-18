@@ -12,6 +12,7 @@ variable "landing_zones" {
       location             = string
       resource_group_name  = string
       mesh_peering_enabled = bool
+      hub_network_resource_id = string
     }))
   }))
 }
