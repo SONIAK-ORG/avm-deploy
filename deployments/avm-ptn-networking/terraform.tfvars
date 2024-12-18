@@ -49,7 +49,7 @@ virtual_hubs = {
 firewalls = {
   primary-firewall = {
     virtual_hub_key      = "primary-hub"
-    sku_name             = ""AZFW_Hub"
+    sku_name             = "AZFW_Hub"
     sku_tier             = "Standard"
     name                 = "Primary-firewall"
     threat_intel_mode    = "Alert"
@@ -70,7 +70,7 @@ firewalls = {
 
   secondary-firewall = {
     virtual_hub_key      = "secondary-hub"
-    sku_name             = ""AZFW_Hub""
+    sku_name             = "AZFW_Hub"
     sku_tier             = "Standard"
     name                 = "Secondary-firewall"
     threat_intel_mode    = "Deny"
