@@ -49,7 +49,7 @@ virtual_hubs = {
 firewalls = {
   primary-firewall = {
     virtual_hub_key      = "primary-hub"
-    sku_name             = "AZFW_VNet"
+    sku_name             = ""AZFW_Hub"
     sku_tier             = "Standard"
     name                 = "Primary-firewall"
     threat_intel_mode    = "Alert"
@@ -70,7 +70,7 @@ firewalls = {
 
   secondary-firewall = {
     virtual_hub_key      = "secondary-hub"
-    sku_name             = "AZFW_VNet"
+    sku_name             = ""AZFW_Hub""
     sku_tier             = "Standard"
     name                 = "Secondary-firewall"
     threat_intel_mode    = "Deny"
@@ -98,7 +98,7 @@ vpn_gateways = {
     tags                                  = { environment = "production", owner = "network-team" }
     bgp_route_translation_for_nat_enabled = false
     bgp_settings = {
-      asn = 65001
+      asn = 65515
       instance_0_bgp_peering_address = {
         custom_ips = ["192.168.1.1", "192.168.1.2"]
       }
