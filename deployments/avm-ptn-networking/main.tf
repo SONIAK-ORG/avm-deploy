@@ -11,6 +11,7 @@ module "virtualwan" {
 
   virtual_hubs = var.virtual_hubs
   firewalls =  var.firewalls
+  vpn_gateways = var.vpn_gateways
 
   providers = {
     azurerm = azurerm
