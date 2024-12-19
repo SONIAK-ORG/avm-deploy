@@ -12,7 +12,7 @@ variable "landing_zones" {
       location             = string
       resource_group_name  = string 
       vwan_connection_enabled  = bool
-      vwan_hub_resource_id = bool
+      vwan_hub_resource_id = string
     }))
   }))
 }
