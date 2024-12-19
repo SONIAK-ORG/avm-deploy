@@ -10,6 +10,6 @@ module "avm-ptn-virtualwan" {
   enable_telemetry = false
   virtual_hubs = var.virtual_hubs
   firewalls =  var.firewalls
-  vpn_gateways = var.vpn_gateways
+  #vpn_gateways = var.vpn_gateways
   # Add other required variables for VirtualWAN module
 }
