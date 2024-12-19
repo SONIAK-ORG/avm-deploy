@@ -3,7 +3,7 @@ landing_zones = {
     location                  = "East US"
     subscription_display_name = "Development Subscription"
     subscription_id           = "0fdf0dd6-c2a7-492b-9745-1435090a3ac9"
-    # virtual_network_enabled = true
+    virtual_network_enabled = true
     # network_watcher_resource_group_enabled = true
 
     virtual_networks = {
