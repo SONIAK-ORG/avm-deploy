@@ -93,12 +93,12 @@ firewalls = {
 
 
 
-vpn_gateways = {
-  "primary-gateway" = {
-    name            = "primary-vpn-gateway"
-    virtual_hub_key = "primary-hub"
-  }
-}
+#vpn_gateways = {
+#  "primary-gateway" = {
+#    name            = "primary-vpn-gateway"
+#    virtual_hub_key = "primary-hub"
+#  }
+#}
 
 
 
