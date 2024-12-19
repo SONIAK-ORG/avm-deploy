@@ -10,8 +10,8 @@ variable "landing_zones" {
       name                 = string
       address_space        = list(string)
       location             = string
-      resource_group_name  = string
-      hub_peering_enabled  = bool
+      resource_group_name  = string 
+      vwan_connection_enabled  = bool
       hub_network_resource_id = string
     }))
   }))
